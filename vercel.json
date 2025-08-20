@@ -1,0 +1,14 @@
+{
+  "env": {
+    "NODE_OPTIONS": "--openssl-legacy-provider"
+  },
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ]
+}
