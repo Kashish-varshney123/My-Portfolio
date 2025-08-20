@@ -30,5 +30,8 @@
   "bugs": {
     "url": "https://github.com/yourusername/portfolio-app/issues"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": "18.x"
+  }
 }
