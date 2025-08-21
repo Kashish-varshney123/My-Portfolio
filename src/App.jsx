@@ -6,6 +6,7 @@ import ContactMe from './components/ContactMe';
 import Skills from './components/Skills';
 
 import Connect from './components/Connect';
+import Chatbot from './components/Chatbot';
 import './styles/main.css';
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
                 <Connect />
                 <ContactMe />
             </main>
+            <Chatbot />
         </div>
     );
 }

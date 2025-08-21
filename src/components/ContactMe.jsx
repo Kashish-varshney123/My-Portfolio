@@ -1,18 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const ContactMe = () => {
-    const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
-
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Form submitted:', formData);
-        alert('Thank you for your message!');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-    };
 
     return (
         <section id="contact" className="contact">
@@ -21,41 +9,41 @@ const ContactMe = () => {
                     Contact me
                 </h2>
                 <div className="contact-content">
-                    <div className="contact-info">
-                        <h3>Get in Touch</h3>
-                        <div className="contact-details">
-                            <div className="contact-item">
-                                <strong>Name</strong>
-                                <p>Kashish Varshney</p>
+                    <div className="interview-scheduler">
+                        <h3>📅 Schedule an Interview</h3>
+                        <form className="schedule-form" action="mailto:kashishvarshney838@gmail.com" method="post" encType="text/plain">
+                            <div className="form-row">
+                                <input type="text" name="name" placeholder="Your Name" required />
+                                <input type="email" name="email" placeholder="Your Email" required />
                             </div>
-                            <div className="contact-item">
-                                <strong>Address</strong>
-                                <p>Aligarh, UP, India</p>
+                            <div className="form-row">
+                                <input type="date" name="date" required />
+                                <input type="time" name="time" required />
                             </div>
-                            <div className="contact-item">
-                                <strong>Email</strong>
-                                <p>kashishvarshney838@gmail.com</p>
-                            </div>
-                        </div>
+                            <select name="type" required>
+                                <option value="">Select Interview Type</option>
+                                <option value="technical">Technical Interview</option>
+                                <option value="general">General Discussion</option>
+                                <option value="project">Project Review</option>
+                            </select>
+                            <textarea name="notes" rows="3" placeholder="Additional notes (optional)"></textarea>
+                            <button type="submit" className="schedule-btn">Schedule Interview</button>
+                        </form>
                     </div>
                     <div className="contact-form-section">
                         <h3>Message me</h3>
-                        <form className="contact-form" onSubmit={handleSubmit}>
+                        <form className="contact-form" action="mailto:kashishvarshney838@gmail.com" method="post" encType="text/plain">
                             <div className="form-row">
                                 <input
                                     type="text"
                                     name="name"
                                     placeholder="Name"
-                                    value={formData.name}
-                                    onChange={handleChange}
                                     required
                                 />
                                 <input
                                     type="email"
                                     name="email"
                                     placeholder="Email"
-                                    value={formData.email}
-                                    onChange={handleChange}
                                     required
                                 />
                             </div>
@@ -63,20 +51,17 @@ const ContactMe = () => {
                                 type="text"
                                 name="subject"
                                 placeholder="Subject"
-                                value={formData.subject}
-                                onChange={handleChange}
                                 required
                             />
                             <textarea
                                 name="message"
                                 placeholder="Message"
                                 rows="5"
-                                value={formData.message}
-                                onChange={handleChange}
                                 required
                             ></textarea>
                             <button type="submit" className="send-btn">Send message</button>
                         </form>
+
                     </div>
                 </div>
             </div>

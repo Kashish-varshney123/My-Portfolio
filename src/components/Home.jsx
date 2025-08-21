@@ -29,12 +29,20 @@ const Home = () => {
     return (
         <section id="home" className="hero">
             <div className="hero-content">
-                <p className="hero-intro">Hello, my name is</p>
-                <h1 className="hero-name">Kashish Varshney</h1>
-                <h2 className="hero-role">
-                    And I'm a <span className="role-text">{displayText}<span className="cursor">|</span></span>
-                </h2>
-                <button onClick={() => window.open('https://www.linkedin.com/in/kashish-varshney44', '_blank')} className="hire-btn">Hire me</button>
+                <div className="hero-text">
+                    <p className="hero-intro">Hello, my name is</p>
+                    <h1 className="hero-name">Kashish Varshney</h1>
+                    <h2 className="hero-role">
+                        And I'm a <span className="role-text">{displayText}<span className="cursor">|</span></span>
+                    </h2>
+                    <button onClick={() => window.open('https://www.linkedin.com/in/kashish-varshney44', '_blank')} className="hire-btn">Hire me</button>
+                </div>
+                <div className="hero-avatar">
+                    <div className="avatar-container">
+                        <div className="avatar-face">👩💻</div>
+                        <div className="avatar-hand">👋</div>
+                    </div>
+                </div>
             </div>
         </section>
     );
