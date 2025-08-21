@@ -12,10 +12,7 @@ const ContactMe = () => {
                     <div className="interview-scheduler">
                         <h3>📅 Schedule an Interview</h3>
                         <form className="schedule-form" action="mailto:kashishvarshney838@gmail.com" method="post" encType="text/plain">
-                            <div className="form-row">
-                                <input type="text" name="name" placeholder="Your Name" required />
-                                <input type="email" name="email" placeholder="Your Email" required />
-                            </div>
+                            <input type="text" name="name" placeholder="Your Name" required />
                             <div className="form-row">
                                 <input type="date" name="date" min={new Date().toISOString().split('T')[0]} required />
                                 <input type="time" name="time" required />
