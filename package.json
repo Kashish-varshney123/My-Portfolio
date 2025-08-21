@@ -17,6 +17,7 @@
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3"
@@ -32,7 +33,6 @@
   "bugs": {
     "url": "https://github.com/yourusername/portfolio-app/issues"
   },
-  "license": "MIT",
   "engines": {
     "node": "18.x"
   }

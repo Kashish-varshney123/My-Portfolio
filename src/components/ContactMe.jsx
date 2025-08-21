@@ -1,6 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const ContactMe = () => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [message, setMessage] = useState('');
+
+    // EmailJS credentials from environment variables
+    const SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+    const TEMPLATE_ID_CONTACT = process.env.REACT_APP_EMAILJS_CONTACT_TEMPLATE_ID;
+    const TEMPLATE_ID_INTERVIEW = process.env.REACT_APP_EMAILJS_INTERVIEW_TEMPLATE_ID;
+    const PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+
+    const sendEmail = async (e, templateId) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setMessage('');
+
+        try {
+            await emailjs.sendForm(
+                SERVICE_ID,
+                templateId,
+                e.target,
+                PUBLIC_KEY
+            );
+            setMessage('Message sent successfully!');
+            e.target.reset();
+        } catch (error) {
+            setMessage('Failed to send message. Please try again.');
+            console.error('EmailJS error:', error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
         <section id="contact" className="contact">
@@ -11,7 +42,7 @@ const ContactMe = () => {
                 <div className="contact-content">
                     <div className="interview-scheduler">
                         <h3>📅 Schedule an Interview</h3>
-                        <form className="schedule-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <form className="schedule-form" onSubmit={(e) => sendEmail(e, TEMPLATE_ID_INTERVIEW)}>
                             <input type="text" name="name" placeholder="Your Name" required />
                             <input type="email" name="email" placeholder="Your Email" required />
                             <input type="hidden" name="_subject" value="Interview Request" />
@@ -26,12 +57,14 @@ const ContactMe = () => {
                                 <option value="project">Project Review</option>
                             </select>
                             <textarea name="notes" rows="3" placeholder="Additional notes (optional)"></textarea>
-                            <button type="submit" className="schedule-btn">Schedule Interview</button>
+                            <button type="submit" className="schedule-btn" disabled={isSubmitting}>
+                                {isSubmitting ? 'Sending...' : 'Schedule Interview'}
+                            </button>
                         </form>
                     </div>
                     <div className="contact-form-section">
                         <h3>Message me</h3>
-                        <form className="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <form className="contact-form" onSubmit={(e) => sendEmail(e, TEMPLATE_ID_CONTACT)}>
                             <input
                                 type="text"
                                 name="name"
@@ -57,11 +90,18 @@ const ContactMe = () => {
                                 rows="5"
                                 required
                             ></textarea>
-                            <button type="submit" className="send-btn">Send message</button>
+                            <button type="submit" className="send-btn" disabled={isSubmitting}>
+                                {isSubmitting ? 'Sending...' : 'Send message'}
+                            </button>
                         </form>
 
                     </div>
                 </div>
+                {message && (
+                    <div className={`message-status ${message.includes('success') ? 'success' : 'error'}`}>
+                        {message}
+                    </div>
+                )}
             </div>
         </section>
     );
