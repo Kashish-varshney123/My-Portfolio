@@ -3,24 +3,28 @@ import React, { useState } from 'react';
 const ContactMe = () => {
     const [message, setMessage] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData);
         
-        // Create mailto link with form data
-        const subject = data.subject || 'Portfolio Contact';
-        const body = `Name: ${data.name}\n\n${data.message || data.notes || ''}`;
-        const mailtoLink = `mailto:kashishvarshney838@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        try {
+            const response = await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString()
+            });
+            
+            if (response.ok) {
+                setMessage('Message sent successfully!');
+                e.target.reset();
+            } else {
+                setMessage('Failed to send message. Please try again.');
+            }
+        } catch (error) {
+            setMessage('Failed to send message. Please try again.');
+        }
         
-        // Open in new tab instead of redirecting
-        window.open(mailtoLink, '_blank');
-        
-        setMessage('Email client opened! Please send the email from there.');
-        e.target.reset();
-        
-        // Clear message after 3 seconds
-        setTimeout(() => setMessage(''), 3000);
+        setTimeout(() => setMessage(''), 5000);
     };
 
     return (
@@ -32,7 +36,8 @@ const ContactMe = () => {
                 <div className="contact-content">
                     <div className="interview-scheduler">
                         <h3>📅 Schedule an Interview</h3>
-                        <form className="schedule-form" onSubmit={handleSubmit}>
+                        <form className="schedule-form" onSubmit={handleSubmit} name="interview" method="POST" data-netlify="true">
+                            <input type="hidden" name="form-name" value="interview" />
                             <input type="text" name="name" placeholder="Your Name" required />
                             <div className="form-row">
                                 <input type="date" name="date" min={new Date().toISOString().split('T')[0]} required />
@@ -50,7 +55,8 @@ const ContactMe = () => {
                     </div>
                     <div className="contact-form-section">
                         <h3>Message me</h3>
-                        <form className="contact-form" onSubmit={handleSubmit}>
+                        <form className="contact-form" onSubmit={handleSubmit} name="contact" method="POST" data-netlify="true">
+                            <input type="hidden" name="form-name" value="contact" />
                             <input
                                 type="text"
                                 name="name"

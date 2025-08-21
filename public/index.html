@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kashish Varshney</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Kashish Varshney - Web Developer Portfolio" />
+    <title>Kashish Varshney - Portfolio</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <script src="index.js"></script>
-</body>
+    
+    <!-- Hidden forms for Netlify detection -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="text" name="subject" />
+      <textarea name="message"></textarea>
+    </form>
+    
+    <form name="interview" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="date" name="date" />
+      <input type="time" name="time" />
+      <select name="type">
+        <option value="technical">Technical Interview</option>
+        <option value="general">General Discussion</option>
+        <option value="project">Project Review</option>
+      </select>
+      <textarea name="notes"></textarea>
+    </form>
+  </body>
 </html>
