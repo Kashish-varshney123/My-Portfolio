@@ -16,6 +16,13 @@ const ContactMe = () => {
         setIsSubmitting(true);
         setMessage('');
 
+        // Check if credentials are available
+        if (!SERVICE_ID || !templateId || !PUBLIC_KEY) {
+            setMessage('EmailJS configuration is missing. Please check environment variables.');
+            setIsSubmitting(false);
+            return;
+        }
+
         try {
             await emailjs.sendForm(
                 SERVICE_ID,
