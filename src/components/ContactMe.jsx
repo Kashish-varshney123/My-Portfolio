@@ -1,44 +1,6 @@
-import React, { useState } from 'react';
-import emailjs from '@emailjs/browser';
+import React from 'react';
 
 const ContactMe = () => {
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [message, setMessage] = useState('');
-
-    // EmailJS credentials from environment variables
-    const SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-    const TEMPLATE_ID_CONTACT = process.env.REACT_APP_EMAILJS_CONTACT_TEMPLATE_ID;
-    const TEMPLATE_ID_INTERVIEW = process.env.REACT_APP_EMAILJS_INTERVIEW_TEMPLATE_ID;
-    const PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
-
-    const sendEmail = async (e, templateId) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setMessage('');
-
-        // Check if credentials are available
-        if (!SERVICE_ID || !templateId || !PUBLIC_KEY) {
-            setMessage('EmailJS configuration is missing. Please check environment variables.');
-            setIsSubmitting(false);
-            return;
-        }
-
-        try {
-            await emailjs.sendForm(
-                SERVICE_ID,
-                templateId,
-                e.target,
-                PUBLIC_KEY
-            );
-            setMessage('Message sent successfully!');
-            e.target.reset();
-        } catch (error) {
-            setMessage('Failed to send message. Please try again.');
-            console.error('EmailJS error:', error);
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
 
     return (
         <section id="contact" className="contact">
@@ -49,7 +11,7 @@ const ContactMe = () => {
                 <div className="contact-content">
                     <div className="interview-scheduler">
                         <h3>📅 Schedule an Interview</h3>
-                        <form className="schedule-form" onSubmit={(e) => sendEmail(e, TEMPLATE_ID_INTERVIEW)}>
+                        <form className="schedule-form" action="mailto:kashishvarshney838@gmail.com" method="post" encType="text/plain">
                             <input type="text" name="name" placeholder="Your Name" required />
                             <div className="form-row">
                                 <input type="date" name="date" min={new Date().toISOString().split('T')[0]} required />
@@ -62,14 +24,12 @@ const ContactMe = () => {
                                 <option value="project">Project Review</option>
                             </select>
                             <textarea name="notes" rows="3" placeholder="Additional notes (optional)"></textarea>
-                            <button type="submit" className="schedule-btn" disabled={isSubmitting}>
-                                {isSubmitting ? 'Sending...' : 'Schedule Interview'}
-                            </button>
+                            <button type="submit" className="schedule-btn">Schedule Interview</button>
                         </form>
                     </div>
                     <div className="contact-form-section">
                         <h3>Message me</h3>
-                        <form className="contact-form" onSubmit={(e) => sendEmail(e, TEMPLATE_ID_CONTACT)}>
+                        <form className="contact-form" action="mailto:kashishvarshney838@gmail.com" method="post" encType="text/plain">
                             <input
                                 type="text"
                                 name="name"
@@ -88,18 +48,11 @@ const ContactMe = () => {
                                 rows="5"
                                 required
                             ></textarea>
-                            <button type="submit" className="send-btn" disabled={isSubmitting}>
-                                {isSubmitting ? 'Sending...' : 'Send message'}
-                            </button>
+                            <button type="submit" className="send-btn">Send message</button>
                         </form>
 
                     </div>
                 </div>
-                {message && (
-                    <div className={`message-status ${message.includes('success') ? 'success' : 'error'}`}>
-                        {message}
-                    </div>
-                )}
             </div>
         </section>
     );
