@@ -44,8 +44,6 @@ const ContactMe = () => {
                         <h3>📅 Schedule an Interview</h3>
                         <form className="schedule-form" onSubmit={(e) => sendEmail(e, TEMPLATE_ID_INTERVIEW)}>
                             <input type="text" name="name" placeholder="Your Name" required />
-                            <input type="email" name="email" placeholder="Your Email" required />
-                            <input type="hidden" name="_subject" value="Interview Request" />
                             <div className="form-row">
                                 <input type="date" name="date" min={new Date().toISOString().split('T')[0]} required />
                                 <input type="time" name="time" required />
@@ -71,13 +69,6 @@ const ContactMe = () => {
                                 placeholder="Name"
                                 required
                             />
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="Email"
-                                required
-                            />
-                            <input type="hidden" name="_subject" value="Portfolio Contact" />
                             <input
                                 type="text"
                                 name="subject"
