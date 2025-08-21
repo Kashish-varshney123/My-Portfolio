@@ -103,6 +103,20 @@ body::after {
     gap: 40px;
 }
 
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    transition: 0.3s;
+}
+
 .nav-menu a {
     text-decoration: none;
     color: #fff;
@@ -759,8 +773,27 @@ section:nth-child(even) {
         grid-template-columns: 1fr;
     }
     
+    .hamburger {
+        display: flex;
+    }
+    
     .nav-menu {
-        display: none;
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: #111;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 50px;
+        transition: right 0.3s ease;
+        gap: 30px;
+    }
+    
+    .nav-menu.active {
+        right: 0;
     }
     
     .section-title {

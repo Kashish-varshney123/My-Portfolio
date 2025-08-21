@@ -29,6 +29,11 @@ function App() {
             <nav className="navbar">
                 <div className="nav-container">
                     <h1 className="nav-logo">Kashish</h1>
+                    <div className="hamburger" onClick={() => document.querySelector('.nav-menu').classList.toggle('active')}>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                     <ul className="nav-menu">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
