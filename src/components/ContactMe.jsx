@@ -11,8 +11,10 @@ const ContactMe = () => {
                 <div className="contact-content">
                     <div className="interview-scheduler">
                         <h3>📅 Schedule an Interview</h3>
-                        <form className="schedule-form" action="mailto:kashishvarshney838@gmail.com" method="post" encType="text/plain">
+                        <form className="schedule-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                             <input type="text" name="name" placeholder="Your Name" required />
+                            <input type="email" name="email" placeholder="Your Email" required />
+                            <input type="hidden" name="_subject" value="Interview Request" />
                             <div className="form-row">
                                 <input type="date" name="date" min={new Date().toISOString().split('T')[0]} required />
                                 <input type="time" name="time" required />
@@ -29,13 +31,20 @@ const ContactMe = () => {
                     </div>
                     <div className="contact-form-section">
                         <h3>Message me</h3>
-                        <form className="contact-form" action="mailto:kashishvarshney838@gmail.com" method="post" encType="text/plain">
+                        <form className="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                             <input
                                 type="text"
                                 name="name"
                                 placeholder="Name"
                                 required
                             />
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                                required
+                            />
+                            <input type="hidden" name="_subject" value="Portfolio Contact" />
                             <input
                                 type="text"
                                 name="subject"
