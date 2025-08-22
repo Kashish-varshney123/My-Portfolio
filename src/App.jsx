@@ -19,7 +19,11 @@ function App() {
         const target = document.querySelector(sectionId);
         if (target) {
             setIsMenuOpen(false);
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const offsetTop = target.offsetTop - 70;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
         }
     };
     return (
