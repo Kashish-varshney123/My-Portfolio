@@ -40,6 +40,7 @@ const ContactMe = () => {
                         <h3>📅 Schedule an Interview</h3>
                         <form className="schedule-form" onSubmit={handleSubmit} action="https://formspree.io/f/mkgzdboe" method="POST">
                             <input type="text" name="name" placeholder="Your Name" required />
+                            <input type="email" name="email" placeholder="Your Email" required />
                             <div className="form-row">
                                 <input type="date" name="date" min={new Date().toISOString().split('T')[0]} required />
                                 <input type="time" name="time" required />
@@ -61,6 +62,12 @@ const ContactMe = () => {
                                 type="text"
                                 name="name"
                                 placeholder="Name"
+                                required
+                            />
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Email"
                                 required
                             />
                             <input
