@@ -17,16 +17,14 @@ const ContactMe = () => {
             });
             
             if (response.ok) {
-                setMessage('Message sent successfully!');
+                alert('Message sent successfully!');
                 form.reset();
             } else {
-                setMessage('Failed to send message. Please try again.');
+                alert('Failed to send message. Please try again.');
             }
         } catch (error) {
-            setMessage('Failed to send message. Please try again.');
+            alert('Failed to send message. Please try again.');
         }
-        
-        setTimeout(() => setMessage(''), 5000);
     };
 
     return (
@@ -89,11 +87,6 @@ const ContactMe = () => {
                     </div>
                 </div>
             </div>
-            {message && (
-                <div className="popup-notification">
-                    {message}
-                </div>
-            )}
         </section>
     );
 };
