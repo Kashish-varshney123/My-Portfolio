@@ -19,7 +19,7 @@ function App() {
         const target = document.querySelector(sectionId);
         if (target) {
             setIsMenuOpen(false);
-            const offsetTop = target.offsetTop - 70;
+            const offsetTop = target.offsetTop - 90;
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
