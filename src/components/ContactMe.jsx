@@ -38,7 +38,7 @@ const ContactMe = () => {
                 <div className="contact-content">
                     <div className="interview-scheduler">
                         <h3>📅 Schedule an Interview</h3>
-                        <form className="schedule-form" onSubmit={handleSubmit} action="https://formspree.io/f/kashishvarshney838@gmail.com" method="POST">
+                        <form className="schedule-form" onSubmit={handleSubmit} action="https://formspree.io/f/mkgzdboe" method="POST">
                             <input type="text" name="name" placeholder="Your Name" required />
                             <div className="form-row">
                                 <input type="date" name="date" min={new Date().toISOString().split('T')[0]} required />
@@ -56,7 +56,7 @@ const ContactMe = () => {
                     </div>
                     <div className="contact-form-section">
                         <h3>Message me</h3>
-                        <form className="contact-form" onSubmit={handleSubmit} action="https://formspree.io/f/xdkogkpv" method="POST">
+                        <form className="contact-form" onSubmit={handleSubmit} action="https://formspree.io/f/mkgzdboe" method="POST">
                             <input
                                 type="text"
                                 name="name"
