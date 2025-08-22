@@ -3,20 +3,30 @@ import React, { useState } from 'react';
 const ContactMe = () => {
     const [message, setMessage] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData);
+        const form = e.target;
         
-        // Show success message
-        setMessage('Form submitted successfully! (This is a demo - forms work when deployed)');
-        e.target.reset();
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                setMessage('Message sent successfully!');
+                form.reset();
+            } else {
+                setMessage('Failed to send message. Please try again.');
+            }
+        } catch (error) {
+            setMessage('Failed to send message. Please try again.');
+        }
         
-        // Clear message after 3 seconds
-        setTimeout(() => setMessage(''), 3000);
-        
-        // Log form data for testing
-        console.log('Form data:', data);
+        setTimeout(() => setMessage(''), 5000);
     };
 
     return (
@@ -28,8 +38,7 @@ const ContactMe = () => {
                 <div className="contact-content">
                     <div className="interview-scheduler">
                         <h3>📅 Schedule an Interview</h3>
-                        <form className="schedule-form" onSubmit={handleSubmit} name="interview" method="POST" data-netlify="true">
-                            <input type="hidden" name="form-name" value="interview" />
+                        <form className="schedule-form" onSubmit={handleSubmit} action="https://formspree.io/f/xdkogkpv" method="POST">
                             <input type="text" name="name" placeholder="Your Name" required />
                             <div className="form-row">
                                 <input type="date" name="date" min={new Date().toISOString().split('T')[0]} required />
@@ -47,8 +56,7 @@ const ContactMe = () => {
                     </div>
                     <div className="contact-form-section">
                         <h3>Message me</h3>
-                        <form className="contact-form" onSubmit={handleSubmit} name="contact" method="POST" data-netlify="true">
-                            <input type="hidden" name="form-name" value="contact" />
+                        <form className="contact-form" onSubmit={handleSubmit} action="https://formspree.io/f/xdkogkpv" method="POST">
                             <input
                                 type="text"
                                 name="name"
