@@ -41,6 +41,7 @@ const ContactMe = () => {
                         <form className="schedule-form" onSubmit={handleSubmit} action="https://formspree.io/f/mkgzdboe" method="POST">
                             <input type="text" name="name" placeholder="Your Name" required />
                             <input type="email" name="email" placeholder="Your Email" required />
+                            <input type="text" name="company" placeholder="Company Name" required />
                             <div className="form-row">
                                 <input type="date" name="date" min={new Date().toISOString().split('T')[0]} required />
                                 <input type="time" name="time" required />
@@ -51,7 +52,7 @@ const ContactMe = () => {
                                 <option value="general">General Discussion</option>
                                 <option value="project">Project Review</option>
                             </select>
-                            <textarea name="notes" rows="3" placeholder="Additional notes (optional)"></textarea>
+                            <textarea name="notes" rows="3" placeholder="Additional notes" required></textarea>
                             <button type="submit" className="schedule-btn">Schedule Interview</button>
                         </form>
                     </div>
@@ -87,12 +88,12 @@ const ContactMe = () => {
 
                     </div>
                 </div>
-                {message && (
-                    <div className="message-status success">
-                        {message}
-                    </div>
-                )}
             </div>
+            {message && (
+                <div className="popup-notification">
+                    {message}
+                </div>
+            )}
         </section>
     );
 };
